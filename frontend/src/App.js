@@ -10,6 +10,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
+import ShippingScreen from "./Screens/ShippingScreen";
+import PaymentScreen from "./Screens/PaymentScreen";
+import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
 
 const App = () => {
   return (
@@ -18,6 +21,9 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/shipping" component={ShippingScreen} />
+          <Route exact path="/payment" component={PaymentScreen} />
+          <Route exact path="/placeorder" component={PlaceOrderScreen} />
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/profile" component={ProfileScreen} />
