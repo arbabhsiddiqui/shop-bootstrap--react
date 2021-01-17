@@ -22,7 +22,7 @@ const PaymentScreen = ({ history }) => {
     e.preventDefault();
 
     dispatch(savePaymentMethod(paymentMethod));
-    history.push("/placeorder");
+    history.push("/order");
   };
 
   return (

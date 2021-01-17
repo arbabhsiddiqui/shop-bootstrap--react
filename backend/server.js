@@ -16,9 +16,14 @@ app.get("/", (req, res) => {
   res.send("Api Start Working");
 });
 
+app.use("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
+
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+
 app.use(notFound);
 
 app.use(errorHandler);
