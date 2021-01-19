@@ -24,12 +24,11 @@ const UserListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you Sure")) {
       dispatch(DeleteUser(id));
-      dispatch(listUsers());
     }
   };
 
@@ -63,7 +62,7 @@ const UserListScreen = ({ history }) => {
                 <td>{user.email}</td>
                 <td>{user.isAdmin === true ? "ADMIN" : "USER"}</td>
                 <td>
-                  <LinkContainer to={`/users/${user._id}`}>
+                  <LinkContainer to={`user/${user._id}/edit`}>
                     <Button variant="light">Edit</Button>
                   </LinkContainer>
                   <Button
