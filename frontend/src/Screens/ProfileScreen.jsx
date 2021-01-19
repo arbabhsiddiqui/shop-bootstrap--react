@@ -131,7 +131,7 @@ const ProfileScreen = ({ history, location }) => {
                     <td>{order.totalPrice}</td>
                     <td>{order.isPaid === 1 ? "Paid" : "Not PAid"}</td>
                     <td>
-                      {order.isDelivered === true
+                      {order.isDelivery === true
                         ? "DELIVERED"
                         : "Not DELIVERED"}
                     </td>
