@@ -42,7 +42,7 @@ const createProduct = asyncHandler(async (req, res) => {
     brand: "Sample Brand",
     category: "Sample Category",
     countInStock: 0,
-    numReviews: 0,
+    numreview: 0,
     description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
   });
 
@@ -80,10 +80,45 @@ const updateProduct = asyncHandler(async (req, res) => {
     throw new Error("Product not Found");
   }
 });
+
+const createProductReview = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  const { rating, comment } = req.body;
+  if (product) {
+    const alreadyReviewed = product.review.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      res.status(400);
+      throw new Error("Already reviewed this product");
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+    product.review.push(review);
+    product.numReviews = product.review.length;
+    product.rating = Number(
+      product.review.reduce((acc, item) => item.rating + acc, 0) /
+        product.review.length
+    );
+
+    await product.save();
+    res.status(201).json({ message: "Review added" });
+  } else {
+    res.status(400);
+    throw new Error("Product not Found");
+  }
+});
 export {
   getProductById,
   getProducts,
   deleteProduct,
   createProduct,
   updateProduct,
+  createProductReview,
 };
