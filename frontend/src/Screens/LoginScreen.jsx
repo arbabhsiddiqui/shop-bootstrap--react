@@ -35,7 +35,7 @@ const LoginScreen = ({ location, history }) => {
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader />}
+      392{loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
@@ -60,7 +60,6 @@ const LoginScreen = ({ location, history }) => {
           Sign In
         </Button>
       </Form>
-
       <Row className="py-3">
         <Col>
           New Customer?{""}
